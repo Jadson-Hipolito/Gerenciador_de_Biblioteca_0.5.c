@@ -9,7 +9,8 @@ void registrar_livro() {
   printf(" ██ Localização do livro(número de quatro digitos):");
   scanf("%d", &biblioteca[numLivros].local);
   numLivros++;
-    } else {
-        printf("A biblioteca está cheia. Não é possível adicionar mais livros.\n");
-    }
+ }
+ else {
+  printf("A biblioteca está cheia. Não é possível adicionar mais livros.\n");
+ }
 }

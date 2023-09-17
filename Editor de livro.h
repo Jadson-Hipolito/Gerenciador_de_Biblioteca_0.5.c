@@ -16,6 +16,7 @@ void editor_livro(char *titulo){
   printf("               ██████████████████████████████████████████████\n\n");
   scanf("%d", &mudar);
   switch (mudar) {
+
    case 1:
     printf("Novo local do livro:");
     scanf("%d", &novo_local);
@@ -23,16 +24,19 @@ void editor_livro(char *titulo){
      if (strcasecmp(biblioteca[i].titulo, titulo) == 0) {
       biblioteca[i].local = novo_local;
      }
-     break;
     }
+    break;
+
    case 2:
     printf("Nome do livro:");
     scanf("%s", &titulo);
     break;
+
    case 0:
     printf("Programa finalizado.\n");
+    break
+    
    default:
     printf("Opção inválida. Tente novamente.\n");
-    break;
   }
 }
