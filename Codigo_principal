@@ -41,8 +41,9 @@ void editor_livro(char *titulo){
     for (int i = 0; i < numLivros; i++) {
      if (strcasecmp(biblioteca[i].titulo, titulo) == 0) {
       biblioteca[i].local = novo_local;
-    }
+     }
      break;
+    }
    case 2:
     printf("Nome do livro:");
     scanf("%s", &titulo);
@@ -53,7 +54,6 @@ void editor_livro(char *titulo){
     printf("Opção inválida. Tente novamente.\n");
     break;
   }
-}
 }
 
 int buscar_livro_por_titulo(char *termo) {
@@ -69,13 +69,13 @@ int buscar_livro_por_titulo(char *termo) {
    return 1;
    break;
   }
-}
 
     if (!encontrado) {
      return 0;
     }
 
     return encontrado; // Retorna 1 se encontrado, 0 se não encontrado
+}
 }
 
 void registrar_livro() {
