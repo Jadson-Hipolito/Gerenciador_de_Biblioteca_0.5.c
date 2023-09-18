@@ -1,19 +1,31 @@
 #include <stdio.h>
+#include "modulo_livro.h"
 #include <string.h>
-//codigo de criar struct retirado do chat gpt
-struct livro {
- char titulo[300];
- char autor[150];
- int quant;
- int local;
-};
-struct livro biblioteca [5000];
+
+struct livro biblioteca[5000];
 int numLivros = 0;
 
-void editor_livro(char *titulo);
-int buscar_livro_por_titulo(char *termo);
-void registrar_livro();
-void menu_livro();
+int buscar_livro_por_titulo(char *termo) {
+ int encontrado = 0;
+ for (int i = 0; i < numLivros; i++) {
+  if (strcasecmp(biblioteca[i].titulo, termo) == 0) {
+   printf("Livro encontrado:\n");
+   printf("Título: %s\n", biblioteca[i].titulo);
+   printf("Autor: %s\n", biblioteca[i].autor);
+   printf("Quantidade de cópias: %d\n", biblioteca[i].quant);
+   printf("Número do local: %d\n", biblioteca[i].local);
+   encontrado = 1;
+   return 1;
+   break;
+  }
+
+    if (!encontrado) {
+     return 0;
+    }
+
+    return encontrado;
+}
+}
 
 
 void editor_livro(char *titulo){
@@ -52,53 +64,15 @@ void editor_livro(char *titulo){
 
    case 0:
     printf("Programa finalizado.\n");
-    break
+    break;
     
    default:
     printf("Opção inválida. Tente novamente.\n");
   }
 }
 
-int buscar_livro_por_titulo(char *termo) {
- int encontrado = 0;
- for (int i = 0; i < numLivros; i++) {
-  if (strcasecmp(biblioteca[i].titulo, termo) == 0) {
-   printf("Livro encontrado:\n");
-   printf("Título: %s\n", biblioteca[i].titulo);
-   printf("Autor: %s\n", biblioteca[i].autor);
-   printf("Quantidade de cópias: %d\n", biblioteca[i].quant);
-   printf("Número do local: %d\n", biblioteca[i].local);
-   encontrado = 1;
-   return 1;
-   break;
-  }
 
-    if (!encontrado) {
-     return 0;
-    }
-
-    return encontrado; // Retorna 1 se encontrado, 0 se não encontrado
-}
-}
-
-void registrar_livro() {
- if (numLivros < 5000) {
-  printf("\n ██ Nome do livro:");
-  scanf("%s", biblioteca[numLivros].titulo);
-  printf(" ██ Autor do livro:");
-  scanf("%s", biblioteca[numLivros].autor);
-  printf(" ██ Quantidade de cópias do livro:");
-  scanf("%d", &biblioteca[numLivros].quant);
-  printf(" ██ Localização do livro(número de quatro digitos):");
-  scanf("%d", &biblioteca[numLivros].local);
-  numLivros++;
-    }
- else {
-  printf("A biblioteca está cheia. Não é possível adicionar mais livros.\n");
-    }
-}
-
-void menu_livro(){
+int menu_livro(){
  int redr=50;
  char titulo[300]="name";
  while (1==1){
@@ -135,33 +109,21 @@ void menu_livro(){
   }
  }
 }
-int main() {
- int menu=0;
- printf("\n████████████████████████████████████████████████████████████████████████████\n");
- printf("████████████████████████████████████████████████████████████████████████████\n");
- printf("████████████████████████████████<Biblioteca>████████████████████████████████\n");
- printf("████████████████████████████████████████████████████████████████████████████\n");
- printf("████████████████████████████████████████████████████████████████████████████\n\n");
- printf("               ██████████████████████████████████████████████\n");
- printf("              ████████████████████████████████████████████████\n");
- printf("             █████ 1-Livros Resistrados                   █████\n");
- printf("            █████  2-Livros Emprestados                    █████\n");
- printf("            █████  3-Funcionarios                          █████\n");
- printf("             █████ 0-Finalizar Programa                   █████\n");
- printf("              ████████████████████████████████████████████████\n");
- printf("               ██████████████████████████████████████████████\n\n");
- scanf("%d", &menu);
- //No switch abaixo foi usado a ajuda do chat gpt para correção de um erro.
- switch (menu) {
-  case 1:
-   menu_livro();
-   break;
-  case 0:
-   printf("Programa finalizado.\n");
-   return 0;
-  default:
-   printf("Opção inválida. Tente novamente.\n");
-   break;
+
+
+void registrar_livro() {
+ if (numLivros < 5000) {
+  printf("\n ██ Nome do livro:");
+  scanf("%s", biblioteca[numLivros].titulo);
+  printf(" ██ Autor do livro:");
+  scanf("%s", biblioteca[numLivros].autor);
+  printf(" ██ Quantidade de cópias do livro:");
+  scanf("%d", &biblioteca[numLivros].quant);
+  printf(" ██ Localização do livro(número de quatro digitos):");
+  scanf("%d", &biblioteca[numLivros].local);
+  numLivros++;
  }
-   return 0;
+ else {
+  printf("A biblioteca está cheia. Não é possível adicionar mais livros.\n");
+ }
 }
